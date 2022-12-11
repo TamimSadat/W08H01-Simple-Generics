@@ -40,7 +40,12 @@ public final class SimpleGenerics {
 	 */
 	public static int[] toIntArray(Collection<Integer> collection) {
 		// TODO
-		return null;
+		Iterator<Integer> iterator = collection.iterator();
+		int[] arr = new int[collection.size()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = iterator.next();
+		}
+		return arr;
 	}
 
 	/**
@@ -98,8 +103,8 @@ public final class SimpleGenerics {
 	}
 
 	public static void main(String... args) {
-		List<?> l = Arrays.asList(1, 2, 3, 5, 4);
-		System.out.println(toString(l));
+		List<Integer> l = Arrays.asList(1, 2, 3, 5, 4);
+		System.out.println(Arrays.toString(toIntArray(l)));
 
 	}
 }
