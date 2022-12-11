@@ -1,10 +1,7 @@
 package pgdp;
 
 import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public final class SimpleGenerics {
 
@@ -20,7 +17,19 @@ public final class SimpleGenerics {
 	 */
 	public static String toString(Collection<?> collection) {
 		// TODO
-		return null;
+		Iterator<?> iterator = collection.iterator();
+		StringBuilder testIterator = new StringBuilder("");
+		int i = 0;
+		while (iterator.hasNext()) {
+			if (i == collection.size() - 1) {
+				testIterator.append(iterator.next()).append("");
+			}
+			else {
+				testIterator.append(iterator.next()).append(", ");
+				i++;
+			}
+		}
+		return "{" + testIterator + "}";
 	}
 
 	/**
@@ -89,6 +98,8 @@ public final class SimpleGenerics {
 	}
 
 	public static void main(String... args) {
+		List<?> l = Arrays.asList(1, 2, 3, 5, 4);
+		System.out.println(toString(l));
 
 	}
 }
