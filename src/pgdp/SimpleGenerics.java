@@ -114,11 +114,11 @@ public final class SimpleGenerics {
 	 */
 	public static <K, V> Set<V> getValues(Map<K, V> map) {
 		// TODO
-		Set<V> set = null;
+		ArrayList<V> arrList = new ArrayList<>();
 		for (int i = 0; i < map.size(); i++) {
-			set.add(map.get(i));
+			arrList.add(map.get(i));
 		}
-		return set;
+		return (Set<V>) arrList;
 	}
 
 	public static void main(String... args) {
