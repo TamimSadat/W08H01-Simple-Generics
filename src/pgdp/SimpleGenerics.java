@@ -73,7 +73,14 @@ public final class SimpleGenerics {
 	 */
 	public static <T> T[] specialSort(Class<T> clazz, Collection<T> collection, Comparator<T> comparator) {
 		// TODO
-		return null;
+		T[] arr = generateGenericArray(clazz, collection.size());
+		List<Integer> l = (List<Integer>) collection;
+		Collections.sort(l);
+		Iterator<T> iterator = (Iterator<T>) l.iterator();
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = iterator.next();
+		}
+		return arr;
 	}
 
 	/**
@@ -104,7 +111,9 @@ public final class SimpleGenerics {
 
 	public static void main(String... args) {
 		List<Integer> l = Arrays.asList(1, 2, 3, 5, 4);
-		System.out.println(Arrays.toString(toIntArray(l)));
+		Class<Integer> integerClass = null;
+		Comparator<Integer> comparator = null;
+		System.out.println(Arrays.toString(specialSort(integerClass, l, comparator)));
 
 	}
 }
