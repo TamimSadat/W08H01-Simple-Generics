@@ -87,7 +87,7 @@ public final class SimpleGenerics {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = iterator.next();
 		}
-		Arrays.sort(arr);
+		Arrays.sort(arr,comparator);
 		return arr;
 	}
 
@@ -120,10 +120,10 @@ public final class SimpleGenerics {
 	}
 
 	public static void main(String... args) {
-		List<Double> l = Arrays.asList(1.1, 2.4, 4.3, 3.5, 5.9);
+		List<String> l = Arrays.asList("a", "d", "b", "b", "c");
 		Class<Integer> integerClass = null;
 		Comparator<Integer> comparator = null;
-		System.out.println(Arrays.toString(specialSort(Double.class, l,null)));
+		System.out.println(Arrays.toString(specialSort(String.class, l,null)));
 
 	}
 }
