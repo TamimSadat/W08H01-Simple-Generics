@@ -74,16 +74,20 @@ public final class SimpleGenerics {
 	public static <T> T[] specialSort(Class<T> clazz, Collection<T> collection, Comparator<T> comparator) {
 		// TODO
 		T[] arr = generateGenericArray(clazz, collection.size());
+		/*
 		switch (((Object) collection).getClass().getSimpleName()) {
-			case "String" -> Collections.sort((List<String>) collection);
+			case "String" -> Collections.sort((List<String>) collection, comparator);
 			case "Integer" -> Collections.sort((List<Integer>) collection);
 			case "Double" -> Collections.sort((List<Double>) collection);
 			default -> Collections.sort((List<Long>) collection);
 		}
+
+		 */
 		Iterator<T> iterator = collection.iterator();
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = iterator.next();
 		}
+		Arrays.sort(arr);
 		return arr;
 	}
 
@@ -110,6 +114,8 @@ public final class SimpleGenerics {
 	 */
 	public static <K, V> Set<V> getValues(Map<K, V> map) {
 		// TODO
+
+
 		return null;
 	}
 
