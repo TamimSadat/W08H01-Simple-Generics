@@ -114,18 +114,22 @@ public final class SimpleGenerics {
 	 */
 	public static <K, V> Set<V> getValues(Map<K, V> map) {
 		// TODO
-		ArrayList<V> arrList = new ArrayList<>();
+		Set<V> valSet = new HashSet<>();
+		ArrayList<K> arrList = new ArrayList<>(map.keySet());
 		for (int i = 0; i < map.size(); i++) {
-			arrList.add(map.get(i));
+			valSet.add(map.get(arrList.get(i)));
 		}
-		return (Set<V>) arrList;
+		return valSet;
+
 	}
 
 	public static void main(String... args) {
-		List<String> l = Arrays.asList("a", "d", "b", "b", "c");
-		Class<Integer> integerClass = null;
-		Comparator<Integer> comparator = null;
-		System.out.println(Arrays.toString(specialSort(String.class, l,null)));
 
+		HashMap<Integer, String> id = new HashMap<>() {};
+		id.put(311, "Eric Meng");
+		id.put(312, "Daniel John");
+		id.put(313, "Lasse Stößer");
+
+		System.out.println(getValues(id));
 	}
 }
