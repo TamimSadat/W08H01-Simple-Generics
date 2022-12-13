@@ -105,8 +105,7 @@ public final class SimpleGenerics {
 		// TODO
 		if (collections.length == 0) {
 			//return "{}";
-			Collection<T> arrList = new ArrayList<>();
-			return arrList;
+			return new ArrayList<>();
 		}
 		else {
 			for (int i = 0; i < collections.length; i++) {
@@ -114,7 +113,9 @@ public final class SimpleGenerics {
 					break;
 				}
 				else {
+					Collection<T> old = collections[i + 1];
 					collections[0].retainAll(collections[i + 1]);
+					collections[i + 1] = old;
 				}
 			}
 			Collection<T> arrList = new ArrayList<>();
@@ -163,6 +164,12 @@ public final class SimpleGenerics {
 		collections[1].add(3);
 		collections[2].add(4);
 		collections[2].add(5);
+		collections[2].add(3);
+		collections[2].add(3);
+		collections[2].add(3);
+
+		ArrayList<Integer> arrList = new ArrayList<>();
+		System.out.println(arrList);
 
 
 		System.out.println(intersection(collections));
