@@ -104,26 +104,16 @@ public final class SimpleGenerics {
 	public static <T> Collection<T> intersection(Collection<T>[] collections) {
 		// TODO
 		if (collections.length == 0) {
-			//return "{}";
 			return new ArrayList<>();
 		}
 		else {
-			Collection<T> oldOfZero = collections[0];
+			ArrayList<T> arrList = new ArrayList<>();
 			for (int i = 0; i < collections.length; i++) {
-				if (i + 1 == collections.length) {
-					break;
-				}
-				else {
-					Collection<T> old = collections[i + 1];
-					collections[0].retainAll(collections[i + 1]);
-					collections[i + 1] = old;
-				}
+				arrList.addAll(collections[i]);
 			}
-			Collection<T> arrList = new ArrayList<>();
-			for (int i = 0; i < collections[0].size(); i++) {
-				arrList.add(collections[0].stream().toList().get(i));
+			for (int i = 1; i < collections.length; i++) {
+				arrList.retainAll(collections[i]);
 			}
-			collections[0] = oldOfZero;
 			return arrList.stream().distinct().toList();
 		}
 	}
@@ -163,6 +153,9 @@ public final class SimpleGenerics {
 		collections[0].add(4);
 		collections[0].add(5);
 		collections[0].add(1);
+		collections[0].add(1);
+		collections[0].add(1);
+		collections[0].add(1);
 		collections[1].add(3);
 		collections[2].add(4);
 		collections[2].add(5);
@@ -170,8 +163,7 @@ public final class SimpleGenerics {
 		collections[2].add(3);
 		collections[2].add(3);
 
-		ArrayList<Integer> arrList = new ArrayList<>();
-		System.out.println(arrList);
+
 
 
 		System.out.println(intersection(collections));
