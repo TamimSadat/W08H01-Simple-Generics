@@ -2,6 +2,8 @@ package pgdp;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class SimpleGenerics {
 
@@ -94,14 +96,33 @@ public final class SimpleGenerics {
 	/**
 	 * Returns a collection of all elements that are contained by each Collection of
 	 * collections. Collections of the input are not modified.
-	 * 
+	 *
 	 * @param <T>
 	 * @param collections not null, may not contain null values.
 	 * @return intersection of all collections
 	 */
 	public static <T> Collection<T> intersection(Collection<T>[] collections) {
 		// TODO
-		return null;
+		if (collections.length == 0) {
+			//return "{}";
+			Collection<T> arrList = new ArrayList<>();
+			return arrList;
+		}
+		else {
+			for (int i = 0; i < collections.length; i++) {
+				if (i + 1 == collections.length) {
+					break;
+				}
+				else {
+					collections[0].retainAll(collections[i + 1]);
+				}
+			}
+			Collection<T> arrList = new ArrayList<>();
+			for (int i = 0; i < collections[0].size(); i++) {
+				arrList.add(collections[0].stream().toList().get(i));
+			}
+			return arrList.stream().distinct().toList();
+		}
 	}
 
 	/**
@@ -120,16 +141,30 @@ public final class SimpleGenerics {
 			valSet.add(map.get(arrList.get(i)));
 		}
 		return valSet;
-
 	}
 
 	public static void main(String... args) {
 
-		HashMap<Integer, String> id = new HashMap<>() {};
-		id.put(311, "Eric Meng");
-		id.put(312, "Daniel John");
-		id.put(313, "Lasse Stößer");
 
-		System.out.println(getValues(id));
+		Collection<Integer>[] collections = new ArrayList[3];
+		for (int i = 0; i < collections.length; i++) {
+			collections[i] = new ArrayList<>();
+		}
+		for (int i = 0; i < collections.length; i++) {
+			collections[i].add(1);
+		}
+		for (int i = 0; i < collections.length; i++) {
+			collections[i].add(2);
+		}
+		collections[0].add(3);
+		collections[0].add(4);
+		collections[0].add(5);
+		collections[0].add(1);
+		collections[1].add(3);
+		collections[2].add(4);
+		collections[2].add(5);
+
+
+		System.out.println(intersection(collections));
 	}
 }
