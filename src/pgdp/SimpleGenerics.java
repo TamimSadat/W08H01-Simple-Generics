@@ -108,6 +108,7 @@ public final class SimpleGenerics {
 			return new ArrayList<>();
 		}
 		else {
+			Collection<T> oldOfZero = collections[0];
 			for (int i = 0; i < collections.length; i++) {
 				if (i + 1 == collections.length) {
 					break;
@@ -118,6 +119,7 @@ public final class SimpleGenerics {
 					collections[i + 1] = old;
 				}
 			}
+			collections[0] = oldOfZero;
 			Collection<T> arrList = new ArrayList<>();
 			for (int i = 0; i < collections[0].size(); i++) {
 				arrList.add(collections[0].stream().toList().get(i));
