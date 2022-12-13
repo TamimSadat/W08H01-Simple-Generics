@@ -103,16 +103,19 @@ public final class SimpleGenerics {
 	 */
 	public static <T> Collection<T> intersection(Collection<T>[] collections) {
 		// TODO
-
+		if (collections.length == 0) {
+			return new ArrayList<>();
+		}
+		else {
 			ArrayList<T> arrList = new ArrayList<>();
 			for (int i = 0; i < collections.length; i++) {
 				arrList.addAll(collections[i]);
 			}
-			for (int i = 1; i < collections.length; i++) {
+			for (int i = 0; i < collections.length; i++) {
 				arrList.retainAll(collections[i]);
 			}
 			return arrList.stream().distinct().toList();
-
+		}
 	}
 
 	/**
