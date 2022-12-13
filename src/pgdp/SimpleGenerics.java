@@ -119,11 +119,11 @@ public final class SimpleGenerics {
 					collections[i + 1] = old;
 				}
 			}
-			collections[0] = oldOfZero;
 			Collection<T> arrList = new ArrayList<>();
 			for (int i = 0; i < collections[0].size(); i++) {
 				arrList.add(collections[0].stream().toList().get(i));
 			}
+			collections[0] = oldOfZero;
 			return arrList.stream().distinct().toList();
 		}
 	}
